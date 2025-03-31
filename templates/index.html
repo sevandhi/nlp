@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NER - Named Entity Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #333;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 90%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .PER { background-color: #ffcccb; padding: 2px 5px; border-radius: 5px; } /* Red */
+        .LOC { background-color: #ccffcc; padding: 2px 5px; border-radius: 5px; } /* Green */
+        .ORG { background-color: #ccccff; padding: 2px 5px; border-radius: 5px; } /* Blue */
+        .MISC { background-color: #ffffcc; padding: 2px 5px; border-radius: 5px; } /* Yellow */
+        
+        .legend span {
+            padding: 5px 10px;
+            margin: 0 5px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        .result-box {
+            width: 90%;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 5px;
+            background: #f1f1f1;
+            text-align: left;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔍 NAMED ENTITY RECOGNITION</h2>
+        
+        <div class="legend">
+            <b>📌 வண்ணக் குறியீடுகள்:</b> 
+            <span class="PER">👤 நபர் (PER)</span>
+            <span class="LOC">📍 இடம் (LOC)</span>
+            <span class="ORG">🏢 நிறுவனம் (ORG)</span>
+            <span class="MISC">📌 பிற (MISC)</span>
+          
+        </div>
+        
+        <form method="POST">
+            <label><b>✍ உங்கள் தமிழ் உரையை உள்ளிடுங்கள்:</b></label><br>
+            <textarea name="paragraph">{{ paragraph }}</textarea><br>
+            <button type="submit">🔍 பெயர் அடையாளம் கண்டுபிடிக்க</button>
+        </form>
+
+        {% if highlighted_paragraph %}
+            <h3>✨ அடையாளம் காணப்பட்ட பெயர்கள்:</h3>
+            <div class="result-box">
+                <p>{{ highlighted_paragraph | safe }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
